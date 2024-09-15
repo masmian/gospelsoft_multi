@@ -6,8 +6,8 @@ class Iglesia extends Model {}
 Iglesia.init(
   {
     iglesia_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey:true
     },
     nombre: {

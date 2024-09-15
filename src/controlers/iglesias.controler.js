@@ -1,4 +1,4 @@
-const Iglesia = require('../models/model.iglesia')
+const Iglesia = require('../models/iglesia.model')
 
 const getAllChurches = async (req, res) => {
     const iglesias = await Iglesia.findAll();
@@ -44,13 +44,13 @@ const editChurch = async (req, res) => {
 
 }
 
-const deactivateChurch = async (req, res) => {
+const changeChurchState = async (req, res) => {
     const id = req.params.id;
     const iglesia = await Iglesia.findByPk(id);
     if (!iglesia) {
         return res.status(404).json({ msg: 'Iglesia no encontrada' });
     }
-    iglesia.estado = false;
+    iglesia.estado = !iglesia.estado;
     await iglesia.save();
     res.json(iglesia)
 }
@@ -60,5 +60,5 @@ module.exports = {
     getChurch, 
     registerChurch,
     editChurch,
-    deactivateChurch
+    changeChurchState
 }
