@@ -1,4 +1,13 @@
 const express = require('express')
+const morgan = require('morgan')
+
+
+const app = express()
+
+app.use(cors())
+app.use(express.json())
+app.use(morgan(dev))
+
 const routerIglesia = require('./routes/iglesias.routes')
 const routerTipoUsuario = require('./routes/tipoUsuario.routes')
 const routerUsuario = require('./routes/usuarios.routes')
@@ -12,8 +21,6 @@ const routerDiezmador = require('./routes/diezmador.routes')
 const routerDiezmo = require('./routes/diezmo.routes')
 const routerIngreso = require('./routes/ingreso.routes')
 
-const app = express()
-app.use(express.json())
 app.use(routerIglesia)
 app.use(routerTipoUsuario)
 app.use(routerUsuario)
